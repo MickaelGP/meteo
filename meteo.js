@@ -27,7 +27,8 @@ function contenue(dt) {
     titreVille.innerText = dt.name +' le '+ date.toLocaleString() ;
     tempActuelle.innerText = dt.main.temp;
     tempMax.innerText = dt.main.temp_max;
-    tempMin.innerText = dt.main.temp_min
+    tempMin.innerText = dt.main.temp_min;
+    changeBackground(dt.main.temp);
 }
 
 function afficherMeteo() {
@@ -37,6 +38,13 @@ function afficherMeteo() {
         recupDonees(inputText.value.trim(), contenue);
     }
 }
+
+function changeBackground(temperature){
+   if(temperature > 15){
+    document.body.style.background = "linear-gradient(#e66465, #9198e5)";
+   }else if(temperature < 15){
+    document.body.style.background = "linear-gradient(#9198e5, #e66465)";
+   }
+}
+
 btn.addEventListener('click', afficherMeteo)
-
-
