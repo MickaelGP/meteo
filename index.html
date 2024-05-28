@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -9,24 +9,25 @@
 </head>
 
 <body>
-    <div class="main">
-        <h1>Voir la météo d'une ville</h1>
-        <input type="text" id="textInput" placeholder="Votre ville">
+    <section class="main">
         <div>
-            <button type="button" id="btn">Rechercher</button>
-        </div>
-    </div>
-
-    <div id="info" class="reveal">
-        <div id="result">
-            <h1 id="ville"></h1>
+            <h1>Voir la météo d'une ville</h1>
+            <input type="text" id="textInput" placeholder="Votre ville">
             <div>
-                <h3>Température actuelle : <span id="tempActuelle"></span> °C</h3>
-                <h3>Température maximun : <span id="tempMax"></span> °C</h3>
-                <h3>Température minimun : <span id="tempMin"></span> °C</h3>
+                <button type="button" id="btn">Rechercher</button>
             </div>
         </div>
-    </div>
+    </section>
+    <section id="info" class="reveal">
+            <div id="result">
+                <h1 id="ville"></h1>
+                <div>
+                    <h3>Température actuelle : <span id="tempActuelle"></span> °C</h3>
+                    <h3>Température maximun : <span id="tempMax"></span> °C</h3>
+                    <h3>Température minimun : <span id="tempMin"></span> °C</h3>
+                </div>
+            </div>
+    </section>
     <script src="/meteo.js"></script>
 </body>
 
