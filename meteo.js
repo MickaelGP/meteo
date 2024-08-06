@@ -11,6 +11,13 @@ const tempActuelle = document.getElementById('tempActuelle');
 const tempMax = document.getElementById('tempMax');
 const tempMin = document.getElementById('tempMin');
 
+function echapeHTML(string) {
+    return string.replace(/&/g, "&amp;")
+              .replace(/</g, "&lt;")
+              .replace(/>/g, "&gt;")
+              .replace(/"/g, "&quot;")
+              .replace(/'/g, "&#039;");
+}
 // Fonction asynchrone pour récupérer les données météo d'une ville
 async function recupDonees(city, callback) {
     try {
@@ -32,13 +39,13 @@ function contenue(dt) {
     // Affichage de la div contenant les résultats
     divInfo.classList.remove('reveal');
     // Affichage du nom de la ville et de la date
-    titreVille.innerText = dt.name +' le '+ date.toLocaleString() ;
+    titreVille.textContent = `${echapeHTML(dt.name)} le ${date.toLocaleString()}`;
     // Affichage de la température actuelle
-    tempActuelle.innerText = dt.main.temp;
+    tempActuelle.textContent = echapeHTML(dt.main.temp.toString());
     // Affichage de la température maximale
-    tempMax.innerText = dt.main.temp_max;
+    tempMax.textContent = echapeHTML(dt.main.temp_max.toString());
     // Affichage de la température minimale
-    tempMin.innerText = dt.main.temp_min;
+    tempMin.textContent = echapeHTML(dt.main.temp_min.toString());
     // Changement du fond en fonction de la température
     changeBackground(dt.main.temp);
 }
@@ -50,7 +57,7 @@ function afficherMeteo() {
         alert('Il faut ajouter le nom d\'une ville');
     }else{
         // Appel de la fonction pour récupérer les données météo
-        recupDonees(inputText.value.trim(), contenue);
+        recupDonees(inputText.value.trim().toString(), contenue);
     }
 }
 
@@ -66,4 +73,7 @@ function changeBackground(temperature){
 }
 
 // Ajout d'un écouteur d'événement pour le clic sur le bouton
-btn.addEventListener('click', afficherMeteo)
+btn.addEventListener('click', (event) => {
+    event.preventDefault();
+    afficherMeteo();
+})
